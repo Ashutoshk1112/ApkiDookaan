@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "576311468922",
+    "firebase_url": "https://apkidookan.firebaseio.com",
+    "project_id": "apkidookan",
+    "storage_bucket": "apkidookan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576311468922:android:bc8d5e437f938e40d0acc3",
+        "android_client_info": {
+          "package_name": "com.monktree.apkidookan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576311468922-ih97mqh50p0uui13e9j5eppvi85e8ihn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp2QYzHwrnG3BdV6_nPVfiSPb_7pruamM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576311468922-ih97mqh50p0uui13e9j5eppvi85e8ihn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
