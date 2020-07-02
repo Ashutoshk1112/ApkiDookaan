@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'Screens/LoginScreen.dart';
 import 'Screens/QRScreen.dart';
-import 'Component/QRDetector.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -10,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ScanPage(),
+      home: QRViewExample(),
     );
   }
 }

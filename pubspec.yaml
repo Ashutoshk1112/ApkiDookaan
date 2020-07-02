@@ -32,7 +32,7 @@ dev_dependencies:
   firebase_core: ^0.4.5
   barcode_scan: ^3.0.1
   path_provider: ^1.6.11
-
+  qr_code_scanner: ^0.0.13
 #  cloud_firestore: ^0.13.7
 
 
