@@ -27,12 +27,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  adobe_xd: ^0.1.4
   firebase_auth: ^0.16.1
   firebase_core: ^0.4.5
-  barcode_scan: ^3.0.1
-  path_provider: ^1.6.11
   qr_code_scanner: ^0.0.13
+  url_launcher: ^4.0.3
 #  cloud_firestore: ^0.13.7
 
 

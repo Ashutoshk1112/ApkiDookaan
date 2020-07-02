@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-
-const flashOn = 'FLASH ON';
-const flashOff = 'FLASH OFF';
+import 'package:url_launcher/url_launcher.dart';
 
 class QRViewExample extends StatefulWidget {
   const QRViewExample({
@@ -14,90 +12,89 @@ class QRViewExample extends StatefulWidget {
 }
 
 class _QRViewExampleState extends State<QRViewExample> {
-  var qrText = '';
-  var flashState = flashOn;
-//  var cameraState = frontCamera;
+  String qrText ;
   QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
+
+    void _launchURL(String url) async {
+      if (await canLaunch(url)) {
+        await launch(url, forceWebView: true); //forceWebView
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
+
+  @override
+  void initState() {
+      //_launchURL("qrText");
+    print(qrText);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.all(8),
-                        child: RaisedButton(
-                          onPressed: () {
-                            if (controller != null) {
-                              controller.toggleFlash();
-                              if (_isFlashOn(flashState)) {
-                                setState(() {
-                                  flashState = flashOff;
-                                });
-                              } else {
-                                setState(() {
-                                  flashState = flashOn;
-                                });
-                              }
-                            }
-                          },
-                          child:
-                          Text(flashState, style: TextStyle(fontSize: 10)),
-                        ),
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child:Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                    image: DecorationImage(
+                        image: AssetImage('images/Group3.png'),
+                        fit: BoxFit.cover
+                    )
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: IconButton(
+                        onPressed: (){},
+                        icon: Icon(Icons.arrow_back_ios),
+                        iconSize: 30.0,
+                        color: Colors.white,
                       ),
+                    ),
 
-                    ],
-                  ),
-                  Text('This is the result of scan: $qrText',style: TextStyle(fontSize: 10.0),),
-                ],
+                    Text('Add New Shop',style: TextStyle(fontSize: 35.0,color: Colors.white),),
+
+                  ],
+                ),
+              )
+            ),
+            Expanded(
+              flex: 4,
+              child: QRView(
+                key: qrKey,
+                onQRViewCreated: _onQRViewCreated,
+                overlay: QrScannerOverlayShape(
+                  borderColor: Color(0xff7f1cff),
+                  borderRadius: 10,
+                  borderLength: 30,
+                  borderWidth: 10,
+                  cutOutSize: 300,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 4,
-            child: QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
-              overlay: QrScannerOverlayShape(
-                borderColor: Color(0xff7f1cff),
-                borderRadius: 10,
-                borderLength: 30,
-                borderWidth: 10,
-                cutOutSize: 300,
-              ),
-            ),
-          ),
 
-        ],
+          ],
+        ),
       ),
     );
   }
-
-  bool _isFlashOn(String current) {
-    return flashOn == current;
-  }
-
-//  bool _isBackCamera(String current) {
-//    return backCamera == current;
-//  }
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         qrText = scanData;
+        _launchURL(qrText);
       });
     });
   }
