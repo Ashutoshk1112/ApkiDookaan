@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'Screens/LoginScreen.dart';
 import 'Screens/QRScreen.dart';
 void main() => runApp(MyApp());
@@ -9,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: QRViewExample(),
+      home: LGS(),
     );
   }
 }

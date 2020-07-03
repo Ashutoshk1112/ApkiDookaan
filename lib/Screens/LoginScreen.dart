@@ -82,10 +82,11 @@ class _LGSState extends State<LGS> {
 
                   Column(
                     children: <Widget>[
-                      TextField(
+                      TextFormField(
                         onChanged: (value){
                           email=value;
                         },
+                        validator: (input) => !input.contains('@') ? 'Not a valid Email' : null,
                         keyboardType:TextInputType.emailAddress ,
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
@@ -106,10 +107,11 @@ class _LGSState extends State<LGS> {
                         ),
                       ),
                       SizedBox(height: 16,),
-                      TextField(
+                      TextFormField(
                         onChanged: (value){
                           password=value;
                         },
+                        validator: (input) => input.length < 8 ? 'You need at least 8 characters' : null,
                         textAlign: TextAlign.center,
                         obscureText: true,
                         decoration: InputDecoration(
@@ -231,13 +233,15 @@ class _LGSState extends State<LGS> {
                         height: 50,
                         width: 192.0,
                         child: FlatButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ZIPS()));
+                          },
                           padding: EdgeInsets.all(0),
                           child: Ink(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               image: DecorationImage(
-                                image: AssetImage('images/Group1.png'),
+                                image: AssetImage('images/Group8.png'),
                                 fit: BoxFit.cover,
                               ),
                               boxShadow: [
